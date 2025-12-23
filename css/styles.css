@@ -1524,7 +1524,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     gap: var(--spacing-lg);
     padding: var(--spacing-md) 0;
-    animation: scroll-commits 30s linear infinite;
+    animation: scroll-commits 60s linear infinite;
     width: max-content;
 }
 
