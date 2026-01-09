@@ -691,31 +691,80 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 0.75rem;
     }
 
-    /* Commits Preview */
-    .commits-slider {
-        margin: 0 -1.25rem;
-        padding: 0 1.25rem;
+    /* Commits Preview - Mobile Slider */
+    .commits-slider--mobile {
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
     }
 
-    .commits-slider__track {
+    .commits-slider--mobile .commits-slider__track {
+        display: flex;
+        transition: transform 0.3s ease;
         animation: none;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding-bottom: 1rem;
+        width: auto;
     }
 
-    .commits-slider__track::-webkit-scrollbar {
-        display: none;
-    }
-
-    .commit-card {
-        flex: 0 0 280px;
+    .commits-slider--mobile .commit-card {
+        flex: 0 0 100%;
+        padding: 0 1rem;
         border-radius: var(--radius-md);
     }
 
     .commit-card__image {
         height: auto;
+    }
+
+    .commits-slider__nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .commits-slider__btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid var(--color-gray-400);
+        background: var(--color-gray-300);
+        color: var(--color-light);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition-base);
+    }
+
+    .commits-slider__btn:hover {
+        background: var(--color-accent);
+        border-color: var(--color-accent);
+    }
+
+    .commits-slider__btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .commits-slider__dots {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .commits-slider__dots .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--color-gray-400);
+        cursor: pointer;
+        transition: all var(--transition-base);
+    }
+
+    .commits-slider__dots .dot.active {
+        background: var(--color-accent);
+        transform: scale(1.2);
     }
 
     /* Testimonials */
@@ -1585,6 +1634,11 @@ h1, h2, h3, h4, h5, h6 {
     height: auto;
     object-fit: contain;
     display: block;
+}
+
+/* Hide nav on desktop - auto-scroll handles it */
+.commits-slider__nav {
+    display: none;
 }
 
 .commits-preview__cta {

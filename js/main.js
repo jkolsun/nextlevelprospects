@@ -233,44 +233,74 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ================================
-    // Mobile Commits Slider - Infinite Scroll
+    // Mobile Commits Slider (like testimonials)
     // ================================
-    const commitsTrack = document.querySelector('.commits-slider__track');
+    const commitsSlider = document.querySelector('.commits-slider--mobile');
+    const commitsTrack = document.querySelector('.commits-slider--mobile .commits-slider__track');
+    const commitCards = document.querySelectorAll('.commits-slider--mobile .commit-card');
+    const commitsPrevBtn = document.querySelector('.commits-slider__btn--prev');
+    const commitsNextBtn = document.querySelector('.commits-slider__btn--next');
+    const commitsDotsContainer = document.querySelector('.commits-slider__dots');
 
-    if (commitsTrack) {
-        const isMobile = window.innerWidth <= 768;
+    if (commitsTrack && commitCards.length > 0 && window.innerWidth <= 768) {
+        let currentCommit = 0;
+        const totalCommits = commitCards.length;
 
-        if (isMobile) {
-            let isScrolling = false;
+        // Create dots
+        commitCards.forEach((_, index) => {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToCommit(index));
+            commitsDotsContainer.appendChild(dot);
+        });
 
-            // Start in the middle (at the second set of cards)
-            setTimeout(() => {
-                const oneThird = commitsTrack.scrollWidth / 3;
-                commitsTrack.scrollLeft = oneThird;
-            }, 100);
+        const commitDots = commitsDotsContainer.querySelectorAll('.dot');
 
-            commitsTrack.addEventListener('scroll', function() {
-                if (isScrolling) return;
-
-                const scrollLeft = commitsTrack.scrollLeft;
-                const scrollWidth = commitsTrack.scrollWidth;
-                const clientWidth = commitsTrack.clientWidth;
-                const oneThird = scrollWidth / 3;
-
-                // If scrolled past 2/3, jump back to 1/3
-                if (scrollLeft >= oneThird * 2) {
-                    isScrolling = true;
-                    commitsTrack.scrollLeft = scrollLeft - oneThird;
-                    setTimeout(() => { isScrolling = false; }, 50);
-                }
-                // If scrolled before 1/3, jump forward to 2/3
-                else if (scrollLeft <= oneThird * 0.1) {
-                    isScrolling = true;
-                    commitsTrack.scrollLeft = scrollLeft + oneThird;
-                    setTimeout(() => { isScrolling = false; }, 50);
-                }
+        function updateCommitsSlider() {
+            commitsTrack.style.transform = `translateX(-${currentCommit * 100}%)`;
+            commitDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentCommit);
             });
         }
+
+        function goToCommit(index) {
+            currentCommit = index;
+            updateCommitsSlider();
+        }
+
+        function nextCommit() {
+            currentCommit = (currentCommit + 1) % totalCommits;
+            updateCommitsSlider();
+        }
+
+        function prevCommit() {
+            currentCommit = (currentCommit - 1 + totalCommits) % totalCommits;
+            updateCommitsSlider();
+        }
+
+        if (commitsNextBtn) commitsNextBtn.addEventListener('click', nextCommit);
+        if (commitsPrevBtn) commitsPrevBtn.addEventListener('click', prevCommit);
+
+        // Touch/swipe support
+        let commitTouchStartX = 0;
+        let commitTouchEndX = 0;
+
+        commitsTrack.addEventListener('touchstart', (e) => {
+            commitTouchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        commitsTrack.addEventListener('touchend', (e) => {
+            commitTouchEndX = e.changedTouches[0].screenX;
+            const diff = commitTouchStartX - commitTouchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    nextCommit();
+                } else {
+                    prevCommit();
+                }
+            }
+        }, { passive: true });
     }
 
     // ================================
