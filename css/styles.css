@@ -782,21 +782,26 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .testimonials__track {
-        align-items: flex-start;
+        align-items: stretch;
     }
 
     .testimonial-card {
         flex: 0 0 100%;
+        display: flex;
+        align-items: flex-start;
     }
 
     .testimonial-card__content {
         padding: 1.5rem;
         border-radius: var(--radius-md);
+        height: auto;
     }
 
     .testimonial-card__text {
-        font-size: 1rem;
-        line-height: 1.7;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        max-height: 300px;
+        overflow-y: auto;
     }
 
     .testimonial-card__author {
