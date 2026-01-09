@@ -708,12 +708,17 @@ h1, h2, h3, h4, h5, h6 {
 
     .commits-slider--mobile .commit-card {
         flex: 0 0 100%;
+        min-width: 100%;
+        width: 100%;
         padding: 0 1rem;
         border-radius: var(--radius-md);
+        box-sizing: border-box;
     }
 
-    .commit-card__image {
+    .commits-slider--mobile .commit-card__image {
+        width: 100%;
         height: auto;
+        display: block;
     }
 
     .commits-slider__nav {
