@@ -233,37 +233,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ================================
-    // Mobile Commits Slider - Infinite Loop
-    // ================================
-    const commitsTrack = document.querySelector('.commits-slider__track');
-
-    if (commitsTrack && window.innerWidth <= 768) {
-        const commitCards = commitsTrack.querySelectorAll('.commit-card');
-        const cardCount = commitCards.length;
-
-        // When user scrolls to near the end, jump back to start seamlessly
-        commitsTrack.addEventListener('scroll', function() {
-            const scrollLeft = commitsTrack.scrollLeft;
-            const scrollWidth = commitsTrack.scrollWidth;
-            const clientWidth = commitsTrack.clientWidth;
-
-            // If scrolled to near the end (last 10%), jump to 1/3 position
-            if (scrollLeft + clientWidth >= scrollWidth - 50) {
-                commitsTrack.scrollLeft = scrollWidth / 3;
-            }
-            // If scrolled to very beginning, jump to 2/3 position
-            if (scrollLeft <= 10) {
-                commitsTrack.scrollLeft = scrollWidth / 3;
-            }
-        });
-
-        // Start at 1/3 position so user can scroll both directions
-        setTimeout(() => {
-            commitsTrack.scrollLeft = commitsTrack.scrollWidth / 3;
-        }, 100);
-    }
-
-    // ================================
     // Form Handling
     // ================================
     const contactForm = document.getElementById('contact-form');
