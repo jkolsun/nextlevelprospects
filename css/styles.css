@@ -698,7 +698,15 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .commits-slider__track {
-        animation: scroll-commits 120s linear infinite;
+        animation: none;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 1rem;
+    }
+
+    .commits-slider__track::-webkit-scrollbar {
+        display: none;
     }
 
     .commit-card {

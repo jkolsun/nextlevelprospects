@@ -233,6 +233,47 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ================================
+    // Mobile Commits Slider - Infinite Scroll
+    // ================================
+    const commitsTrack = document.querySelector('.commits-slider__track');
+
+    if (commitsTrack) {
+        const isMobile = window.innerWidth <= 768;
+
+        if (isMobile) {
+            let isScrolling = false;
+
+            // Start in the middle (at the second set of cards)
+            setTimeout(() => {
+                const oneThird = commitsTrack.scrollWidth / 3;
+                commitsTrack.scrollLeft = oneThird;
+            }, 100);
+
+            commitsTrack.addEventListener('scroll', function() {
+                if (isScrolling) return;
+
+                const scrollLeft = commitsTrack.scrollLeft;
+                const scrollWidth = commitsTrack.scrollWidth;
+                const clientWidth = commitsTrack.clientWidth;
+                const oneThird = scrollWidth / 3;
+
+                // If scrolled past 2/3, jump back to 1/3
+                if (scrollLeft >= oneThird * 2) {
+                    isScrolling = true;
+                    commitsTrack.scrollLeft = scrollLeft - oneThird;
+                    setTimeout(() => { isScrolling = false; }, 50);
+                }
+                // If scrolled before 1/3, jump forward to 2/3
+                else if (scrollLeft <= oneThird * 0.1) {
+                    isScrolling = true;
+                    commitsTrack.scrollLeft = scrollLeft + oneThird;
+                    setTimeout(() => { isScrolling = false; }, 50);
+                }
+            });
+        }
+    }
+
+    // ================================
     // Form Handling
     // ================================
     const contactForm = document.getElementById('contact-form');
