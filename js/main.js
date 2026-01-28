@@ -304,64 +304,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ================================
-    // Form Handling
+    // Form Handling - Let Formspree handle submission
     // ================================
     const contactForm = document.getElementById('contact-form');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-
-            // Simple validation
-            const requiredFields = ['playerName', 'parentName', 'email', 'phone', 'gradYear', 'position', 'state'];
-            let isValid = true;
-
-            requiredFields.forEach(field => {
-                const input = this.querySelector(`[name="${field}"]`);
-                if (!input.value.trim()) {
-                    input.style.borderColor = '#e74c3c';
-                    isValid = false;
-                } else {
-                    input.style.borderColor = '';
-                }
-            });
-
-            if (!isValid) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const emailInput = this.querySelector('[name="email"]');
-            if (!emailRegex.test(emailInput.value)) {
-                emailInput.style.borderColor = '#e74c3c';
-                alert('Please enter a valid email address.');
-                return;
-            }
-
-            // Here you would typically send the data to a server
-            // For now, we'll show a success message
-            console.log('Form data:', data);
-
-            // Show success message
+        // Form submits directly to Formspree via action attribute
+        // Just add visual feedback on submit
+        contactForm.addEventListener('submit', function() {
             const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Request Submitted!';
-            submitBtn.style.background = '#27ae60';
+            submitBtn.textContent = 'Submitting...';
             submitBtn.disabled = true;
-
-            // Reset form
-            setTimeout(() => {
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-            }, 3000);
         });
 
         // Clear error styling on input
