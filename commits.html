@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Next Level Prospects - View our successful college baseball commits. See the players we've helped reach the next level.">
+    <meta name="description" content="Recent college baseball commitments guided by Next Level Prospects.">
     <title>Our Commits | Next Level Prospects</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -142,5 +142,21 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+(function(){
+  var tid='c9fb539692d75b3f';
+  var api='https://brightengine-production.up.railway.app/api/site-track';
+  var sid=sessionStorage.getItem('_ba');
+  if(!sid){sid=(Math.random()*1e16|0).toString(36)+Date.now().toString(36);sessionStorage.setItem('_ba',sid);}
+  var t0=Date.now(),scroll=0;
+  var ref=document.referrer||'',dev=/Mobi|Android/i.test(navigator.userAgent)?'mobile':'desktop';
+  function post(evt,extra){var d=Object.assign({tid:tid,event:evt,sessionId:sid,page:location.pathname,referrer:ref,device:dev},extra||{});if(evt==='page_exit'){navigator.sendBeacon(api,JSON.stringify(d));}else{fetch(api,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).catch(function(){});}}
+  post('pageview');
+  window.addEventListener('scroll',function(){var el=document.documentElement;var depth=el.scrollHeight-el.clientHeight;if(depth>0){var pct=Math.round((window.scrollY/depth)*100);if(pct>scroll)scroll=Math.min(100,pct);}},{passive:true});
+  document.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&a.href&&a.href.indexOf('tel:')>=0){post('call_click');return;}var btn=e.target.closest('button[type="submit"],input[type="submit"]');if(btn){post('form_submit');return;}var cta=e.target.closest('a[href*="cal.com"],a[href*="book"],a[href*="contact"],a[href*="quote"],a[href*="schedule"],a[href*="appointment"],a[href*="estimate"],a[href*="get-started"],a[href*="free"],button:not([type="submit"])');if(cta&&(!cta.href||cta.href!==location.href)){post('cta_click');}});
+  var exited=false;function sendExit(){if(exited)return;exited=true;post('page_exit',{duration:Math.round((Date.now()-t0)/1000),scrollDepth:scroll});}
+  window.addEventListener('beforeunload',sendExit);document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')sendExit();});
+})();
+    </script>
 </body>
 </html>

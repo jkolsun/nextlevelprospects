@@ -78,6 +78,7 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     height: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -3059,5 +3060,51 @@ h1, h2, h3, h4, h5, h6 {
 
     .commits-map__stat-number {
         font-size: 2rem;
+    }
+}
+
+/* --------------------------------
+   Extra Small Screen Enhancements
+   -------------------------------- */
+@media (max-width: 480px) {
+    :root {
+        --container-padding: 1rem;
+    }
+
+    .section-title {
+        font-size: clamp(1.75rem, 5vw, 2.5rem);
+    }
+
+    .section-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .pillar-card,
+    .service-card {
+        padding: 1.25rem;
+    }
+
+    .contact__form {
+        padding: 1.25rem;
+    }
+
+    .form__row {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .about-nlp__stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .footer__top {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .footer__links {
+        flex-direction: column;
+        gap: 1.5rem;
     }
 }

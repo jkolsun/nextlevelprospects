@@ -11,6 +11,47 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Next Level Prospects | College Baseball Recruiting Experts">
+    <meta property="og:description" content="Elite college baseball recruiting advisory. Trusted connections with coaches at every level — D1, D2, D3, JUCO, NAIA. 1000+ families guided. Led by Dan Overcash.">
+    <meta property="og:image" content="https://nextlevelprospects.vercel.app/images/NLP_Logo.jpg">
+    <meta property="og:url" content="https://nextlevelprospects.vercel.app">
+    <meta property="og:site_name" content="Next Level Prospects">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NextLVLProspect">
+    <meta name="twitter:title" content="Next Level Prospects | College Baseball Recruiting">
+    <meta name="twitter:description" content="Elite college baseball recruiting advisory. Personalized guidance for student-athletes and families.">
+    <meta name="twitter:image" content="https://nextlevelprospects.vercel.app/images/NLP_Logo.jpg">
+
+    <!-- Additional SEO -->
+    <meta name="keywords" content="college baseball recruiting, baseball recruiting advisor, college baseball scout, D1 baseball recruiting, D3 baseball recruiting, Ivy League baseball, baseball recruiting consultant, college baseball guidance, student athlete recruiting, baseball scholarship, NESCAC baseball, Patriot League baseball">
+    <meta name="author" content="Next Level Prospects">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nextlevelprospects.vercel.app/">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Next Level Prospects",
+      "description": "Elite college baseball recruiting advisory guiding student-athletes and families through the recruiting process.",
+      "url": "https://nextlevelprospects.vercel.app",
+      "telephone": "+1-215-275-7667",
+      "email": "nextlevelprospectsdo@gmail.com",
+      "founder": {"@type": "Person", "name": "Dan Overcash"},
+      "foundingDate": "2011",
+      "sameAs": ["https://x.com/NextLVLProspect"],
+      "areaServed": {"@type": "Country", "name": "United States"},
+      "serviceType": "College Baseball Recruiting Advisory",
+      "priceRange": "$$"
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -543,7 +584,7 @@
                             </div>
                             <div class="contact__text">
                                 <h4>Phone</h4>
-                                <a href="tel:+1234567890">(215) 275-7667</a>
+                                <a href="tel:+12152757667">(215) 275-7667</a>
                             </div>
                         </div>
                         <div class="contact__item">
@@ -715,7 +756,7 @@
                     <div class="footer__column">
                         <h4>Contact</h4>
                         <ul>
-                            <li><a href="tel:+1234567890">(215) 275-7667</a></li>
+                            <li><a href="tel:+12152757667">(215) 275-7667</a></li>
                             <li><a href="mailto:nextlevelprospectsdo@gmail.com">nextlevelprospectsdo@gmail.com</a></li>
                             <li><a href="https://facebook.com/NEXTLVLPROSPECT" target="_blank">@NEXTLVLPROSPECT</a></li>
                         </ul>
@@ -736,5 +777,21 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+(function(){
+  var tid='c9fb539692d75b3f';
+  var api='https://brightengine-production.up.railway.app/api/site-track';
+  var sid=sessionStorage.getItem('_ba');
+  if(!sid){sid=(Math.random()*1e16|0).toString(36)+Date.now().toString(36);sessionStorage.setItem('_ba',sid);}
+  var t0=Date.now(),scroll=0;
+  var ref=document.referrer||'',dev=/Mobi|Android/i.test(navigator.userAgent)?'mobile':'desktop';
+  function post(evt,extra){var d=Object.assign({tid:tid,event:evt,sessionId:sid,page:location.pathname,referrer:ref,device:dev},extra||{});if(evt==='page_exit'){navigator.sendBeacon(api,JSON.stringify(d));}else{fetch(api,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).catch(function(){});}}
+  post('pageview');
+  window.addEventListener('scroll',function(){var el=document.documentElement;var depth=el.scrollHeight-el.clientHeight;if(depth>0){var pct=Math.round((window.scrollY/depth)*100);if(pct>scroll)scroll=Math.min(100,pct);}},{passive:true});
+  document.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&a.href&&a.href.indexOf('tel:')>=0){post('call_click');return;}var btn=e.target.closest('button[type="submit"],input[type="submit"]');if(btn){post('form_submit');return;}var cta=e.target.closest('a[href*="cal.com"],a[href*="book"],a[href*="contact"],a[href*="quote"],a[href*="schedule"],a[href*="appointment"],a[href*="estimate"],a[href*="get-started"],a[href*="free"],button:not([type="submit"])');if(cta&&(!cta.href||cta.href!==location.href)){post('cta_click');}});
+  var exited=false;function sendExit(){if(exited)return;exited=true;post('page_exit',{duration:Math.round((Date.now()-t0)/1000),scrollDepth:scroll});}
+  window.addEventListener('beforeunload',sendExit);document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')sendExit();});
+})();
+    </script>
 </body>
 </html>
